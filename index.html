@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>CoCart Demo App</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="cleartype" content="on">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="description" content="Demonstration of CoCart used in a web app.">
+	<meta name="apple-mobile-web-app-title" content="CoCart Demo App">
+	<meta name="application-name" content="CoCart Demo App">
+	<meta name="msapplication-TileColor" content="#d63021">
+	<meta name="msapplication-config" content="//cdn.shopify.com/s/files/1/0558/2081/t/6/assets/browserconfig.xml?v=6593301179380342789">
+	<meta name="theme-color" content="#d63021">
+
+	<!-- Prefetch -->
+	<link rel="dns-prefetch" href="//ajax.googleapis.com">
+
+	<!-- Stylesheets -->
+	<link href="css/base.css" type="text/css" rel="stylesheet">
+	<link href="css/style.css" type="text/css" rel="stylesheet">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://restjquery.com/release/latest/restjquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+	<header>
+		<h1 itemprop="name">CoCart Demo App</h1>
+		<a href="#" class="cart">Cart
+			<svg class="svg svg--icon " aria-hidden="true" focusable="false"><use href="#icon-cart" xlink:href="#icon-cart"><symbol viewBox="0 0 31 29" id="icon-cart"><path fill-rule="evenodd" d="M0 .75A.75.75 0 01.75 0h3.746a.75.75 0 01.714.52l1.838 5.686a.75.75 0 01-1.428.462L3.95 1.5H.75A.75.75 0 010 .75zM9.541 17.749a1 1 0 100 2h17.523a.75.75 0 010 1.5H9.541a2.5 2.5 0 010-5h1.68a.75.75 0 010 1.5h-1.68zM11.673 24.98a1.01 1.01 0 100 2.02 1.01 1.01 0 000-2.02zm-2.51 1.01a2.51 2.51 0 115.02 0 2.51 2.51 0 01-5.02 0zM23.679 24.98a1.01 1.01 0 100 2.02 1.01 1.01 0 000-2.02zm-2.51 1.01a2.51 2.51 0 115.02 0 2.51 2.51 0 01-5.02 0z" clip-rule="evenodd"></path><path fill-rule="evenodd" d="M5.697 5.948a.75.75 0 01.604-.306h23.065a.75.75 0 01.715.975l-3.34 10.607a.75.75 0 01-.715.525H9.64a.75.75 0 01-.715-.525L5.586 6.617a.75.75 0 01.11-.669zm1.627 1.194l2.867 9.107h15.285l2.867-9.107H7.323z" clip-rule="evenodd"></path></symbol></use></svg>
+			<div class="cart__item-count is-empty"><span></span></div>
+		</a>
+
+		<p class="notice">This is a web app built with HTML, CSS and jQuery using <a class="link" href="https://cocart.xyz" target="blank">CoCart</a>. It's purpose is to demonstrate the basics of creating a headless store away from your WordPress installation.</p>
+	</header>
+
+	<div class="app">Loading products...</div>
+
+	<section class="api-request closed" style="opacity: 0;">
+		<div>
+			<label class="method"></label>
+			<span class="endpoint"></span>
+			<a href="#" class="toggle-results link">Show response</a>
+		</div>
+		<code class="results"></code>
+	</section>
+
+	<footer class="footer">
+		<p>Site Powered by <a href="https://daneden.github.io/animate.css/" target="_blank">Animate.css</a>, <a href="https://jquery.com/" target="_blank">jQuery</a>, <a href="https://restjquery.com/" target="_blank">RESTjQuery</a> and <a href="https://cocart.xyz" target="blank">CoCart</a>.</p>
+		<p>Copyright © 2020 <a href="https://cocart.xyz" itemprop="publisher">CoCart</a></p>
+	</footer>
+
+	<script type="text/javascript" src="js/demo.js"></script>
+
+</body>
+
+</html>
