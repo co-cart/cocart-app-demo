@@ -1,6 +1,6 @@
 $(document).ready( function() {
 
-	var site_url    = "http://localhost/cocart/wordpress", // Replace with https://wp-demo.cocart.xyz once app demo is ready!
+	var site_url    = "https://wp-demo.cocart.xyz",
 		version     = "cocart/v1/",
 		page_number = 1,
 		per_page    = 8,
