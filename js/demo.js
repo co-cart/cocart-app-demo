@@ -82,7 +82,9 @@ $(document).ready( function() {
 					// Adds product data to button.
 					$.each( value, function( key, attribute ) {
 						if ( typeof attribute === 'string' || typeof attribute === 'boolean' || typeof attribute === 'number' ) {
-							$( product ).find("button").attr('data-' + key, attribute );
+							if ( key != 'yoast_head' ) {
+								$( product ).find("button").attr('data-' + key, attribute );
+							}
 						//} else {
 							//console.log(attribute);
 						}
