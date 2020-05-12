@@ -34,10 +34,19 @@ $(document).ready( function() {
 		return_cart = false;
 	}
 
+	get_cart('closed'); // Load cart but don't open it.
+
 	load_products( per_page, page_number, order_by, order ); // Load the first 6 products.
 
 	$('.product-grid').after('<a class="load-more button button--primary w100 href="#">Load More Products</a>');
 
+	// Cart
+	$('a.cart').on( 'click', function(e) {
+		e.preventDefault();
+		get_cart('open');
+	});
+
+	// Load more products
 	$('a.load-more').on( 'click', function(e) {
 		e.preventDefault();
 		$(this).text( 'Loading' ).addClass('loading').prop('disabled', true);
@@ -157,6 +166,45 @@ $(document).ready( function() {
 		}
 	});
 
+	// Get cart
+	function get_cart( $open ) {
+		if ( $open == 'open' ) {
+			alert( 'Cart will show soon!' );
+			return;
+		}
+
+		$cookie = Cookies.get('cocart_demo');
+
+		var method   = 'GET',
+			endpoint = "get-cart?id=" + $cookie;
+
+		var cart = restjQuery({
+			site_url: site_url,
+			namespace: version,
+			endpoint: endpoint,
+			formMethod: method,
+		});
+
+		var cart_count = $('div.cart__item-count');
+
+		$.each(cart, function(key, value) {
+		});
+
+		// Update counter
+		$('div.cart__item-count span').html();
+
+		// Show cart counter.
+		if ( $('div.cart__item-count span').text().length > 0 ) {
+			$(cart_count).removeClass('is-empty');
+		}
+
+		// Return response results if debug mode is enabled.
+		if ( debug_mode ) {
+			$('.api-request label.method').text(method).addClass(method.toLowerCase());
+			$('.api-request span.endpoint').text(site_url + '/' + version + endpoint);
+			$('.api-request code.results').html( syntaxHighlight( JSON.stringify( cart, undefined, 4 ) ) );
+		}
+	}
 
 	// Add item to the cart.
 	function add_to_cart( product_id, qty, variation_id, variation, button ) {
