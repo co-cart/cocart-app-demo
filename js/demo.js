@@ -85,8 +85,6 @@ $(document).ready( function() {
 							if ( key != 'yoast_head' ) {
 								$( product ).find("button").attr('data-' + key, attribute );
 							}
-						//} else {
-							//console.log(attribute);
 						}
 					});
 
