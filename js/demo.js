@@ -1,5 +1,10 @@
 $(document).ready( function() {
 
+	// Set cookie if it does not exist.
+	if ( Cookies.get('cocart_demo') == undefined ) {
+		Cookies.set('cocart_demo', 'demo');
+	}
+
 	var site_url    = "https://wp-demo.cocart.xyz",
 		version     = "cocart/v1/",
 		page_number = 1,
@@ -141,8 +146,10 @@ $(document).ready( function() {
 
 	// Add item to the cart.
 	function add_to_cart( product_id, qty, variation_id, variation, button ) {
+		$cookie = Cookies.get('cocart_demo');
+
 		var method   = 'POST',
-			endpoint = "add-item",
+			endpoint = "add-item?id=" + $cookie,
 			data     = {
 			"product_id": product_id,
 			"quantity": qty,
