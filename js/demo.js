@@ -21,7 +21,7 @@ $(document).ready( function() {
 
 	$('a.load-more').on( 'click', function(e) {
 		e.preventDefault();
-		$(this).text( 'Loading...' );
+		$(this).text( 'Loading' ).addClass('loading').prop('disabled', true);
 		load_products( per_page, page_number, order_by, order ); // Load the next 6 products.
 	});
 
@@ -106,7 +106,7 @@ $(document).ready( function() {
 
 			page_number = page_number+1;
 
-			$('a.load-more').text( 'Load More Products' );
+			$('a.load-more').text( 'Load More Products' ).removeClass( 'loading' ).prop('disabled', false);
 
 			// Return response results if debug mode is enabled.
 			if ( debug_mode ) {
@@ -116,14 +116,14 @@ $(document).ready( function() {
 			}
 		}
 		else {
-			$('a.load-more').text( 'No more products!' ).fadeOut('slow', function() {
+			$('a.load-more').text( 'No more products!' ).removeClass( 'loading' ).fadeOut('slow', function() {
 				$(this).remove();
 			});
 		}
 	} // END load_products()
 
 	// Add to cart button
-	$('button').on( 'click', function() {
+	$(document).on( 'click', '.card__button', function() {
 		console.log( "Your trying to add " + $(this).attr( 'data-name' ) + " to the cart." );
 
 		var qty = 1;
@@ -133,15 +133,16 @@ $(document).ready( function() {
 		if ( ! $(this).hasClass('product-variable') ) {
 			var product_id = $(this).attr( 'data-id' );
 
-			add_to_cart( product_id, qty, variation_id, variation );
+			$(this).text( 'Adding to cart' ).addClass('loading').prop('disabled', true);
+			add_to_cart( product_id, qty, variation_id, variation, this );
 		} else {
-			alert( "Open modal for selections" );
+			alert( "Modal will open for selections soon." );
 		}
 	});
 
 
 	// Add item to the cart.
-	function add_to_cart( product_id, qty, variation_id, variation ) {
+	function add_to_cart( product_id, qty, variation_id, variation, button ) {
 		var method   = 'POST',
 			endpoint = "add-item",
 			data     = {
@@ -174,6 +175,8 @@ $(document).ready( function() {
 		$(cart).addClass('animated heartBeat fast').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
 			$(this).removeClass('animated heartBeat fast');
 		});
+
+		$(button).text( 'Add to cart' ).removeClass( 'loading' ).prop('disabled', false);
 
 		// Return response results if debug mode is enabled.
 		if ( debug_mode ) {
