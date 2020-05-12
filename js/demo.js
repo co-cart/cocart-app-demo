@@ -1,8 +1,22 @@
 $(document).ready( function() {
 
-	// Set cookie if it does not exist.
+	// Set cookie for cart if it does not exist.
 	if ( Cookies.get('cocart_demo') == undefined ) {
 		Cookies.set('cocart_demo', 'demo');
+	}
+
+	// Set cookie to store response status if it does not exist.
+	if ( Cookies.get('cocart_demo_response') == undefined ) {
+		Cookies.set('cocart_demo_response', 'closed');
+	} else {
+		$show_api_response = Cookies.get('cocart_demo_response');
+		if ( $show_api_response == 'opened' ) {
+			$('a.toggle-results').text('Hide response');
+			$('.api-request').removeClass('closed').addClass('opened');
+		} else {
+			$('a.toggle-results').text('Show response');
+			$('.api-request').addClass('closed').removeClass('opened');
+		}
 	}
 
 	var site_url    = "https://wp-demo.cocart.xyz",
@@ -197,9 +211,11 @@ $(document).ready( function() {
 		if ( $('.api-request').hasClass('closed') ) {
 			$(this).text('Hide response');
 			$('.api-request').removeClass('closed').addClass('opened');
+			Cookies.set('cocart_demo_response', 'opened');
 		} else {
 			$(this).text('Show response');
 			$('.api-request').addClass('closed').removeClass('opened');
+			Cookies.set('cocart_demo_response', 'closed');
 		}
 
 		return false;
