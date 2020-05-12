@@ -1,3 +1,15 @@
+/* Animations */
+@-webkit-keyframes loading {
+    to {
+        width:1.25em;
+    }
+}
+@keyframes loading {
+    to {
+        width:1.25em;
+    }
+}
+
 /* Reset */
 *,
 *::before,
@@ -90,7 +102,7 @@ body {
 
 /* Header */
 header {
-    background-color: #d63021;
+    background-color: #9a6fc4;
     color: #fff;
     height: 124px;
     padding-right: 3rem;
@@ -117,7 +129,7 @@ header h1 {
 }
 
 a {
-    color: #d63021;
+    color: #9a6fc4;
     text-decoration:none;
     -webkit-transition-timing-function:cubic-bezier(0.12, 0.67, 0.53, 1);
     transition-timing-function:cubic-bezier(0.12, 0.67, 0.53, 1);
@@ -148,7 +160,7 @@ a.cart {
 }
 
 a:hover {
-    color: #751a12;
+    color: #484389;
     text-decoration: underline;
 }
 
@@ -157,14 +169,24 @@ a.link:hover {
     color: #ffd700;
 }
 
+.loading::after, .loading::before {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    -webkit-animation: loading steps(4,end) 600ms infinite;
+    animation: 600ms steps(4) 0s infinite normal none running loading;
+    content: "…";
+    width: 0px;
+}
+
 .cart__item-count {
     position: absolute;
     top: .4em;
     right: -.2em;
     font-size: .7rem;
-    color: #d63021;
+    color: #9a6fc4;
     background-color: #fff;
-    box-shadow: 0 0 0 .2em #d63021;
+    box-shadow: 0 0 0 .2em #9a6fc4;
     display: -webkit-box;
     display: flex;
     width: 1.5em;
@@ -312,7 +334,7 @@ a.link:hover {
 }
 
 .card--product .card__link:hover {
-    color:#d63021
+    color:#9a6fc4
 }
 .card .card__title {
     font-size: 1.0575rem;
@@ -330,7 +352,7 @@ a.link:hover {
 }
 
 .card--product .card__title>a:not([class]):hover {
-    color:#d63021
+    color:#9a6fc4
 }
 
 .card .card__byline {
@@ -354,11 +376,11 @@ button:not(:disabled),
 
 .button--primary {
     color: #fff !important;
-    background-color: #d63021;
+    background-color: #9a6fc4;
 }
 
 .button--primary:hover {
-    background-color: #751a12;
+    background-color: #484389;
 }
 
 .button {
@@ -500,7 +522,7 @@ button, select {
 }
 
 .api-request.opened {
-    height: 300px;
+    height: 420px;
 }
 
 a.toggle-results {
@@ -547,7 +569,7 @@ a.toggle-results {
     background-color: #282a36;
     display: none;
     overflow: auto;
-    height: 254px;
+    height: 360px;
     word-break: break-word;
     hyphens: auto;
     font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
