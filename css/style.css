@@ -222,6 +222,8 @@ a.link:hover {
 }
 
 .results {
+    margin: 0 auto;
+    max-width: 1514px;
     -webkit-box-flex: 1;
     flex: 1 1 0%;
     -webkit-transition-timing-function: cubic-bezier(0.12, 0.67, 0.53, 1);
@@ -569,7 +571,7 @@ a.toggle-results {
     background-color: #282a36;
     display: none;
     overflow: auto;
-    height: 360px;
+    height: 364px;
     word-break: break-word;
     hyphens: auto;
     font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
@@ -579,11 +581,14 @@ a.toggle-results {
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s, opacity 0.5s linear;
+    max-width: 100%;
 }
 
 .api-request.opened .results {
     display: block;
-    margin-top: 1em;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
     visibility: visible;
     opacity: 1;
 }
