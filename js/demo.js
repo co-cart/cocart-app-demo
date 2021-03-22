@@ -153,8 +153,8 @@ $(document).ready( function() {
 		console.log( "Your trying to add " + $(this).attr( 'data-name' ) + " to the cart." );
 
 		var qty = 1;
-		var variation_id = 0;
-		var variation = null;
+		var variation_id = '';
+		var variation = '';
 
 		if ( ! $(this).hasClass('product-variable') ) {
 			var product_id = $(this).attr( 'data-id' );
@@ -210,15 +210,25 @@ $(document).ready( function() {
 	function add_to_cart( product_id, qty, variation_id, variation, button ) {
 		$cart_key = window.localStorage.getItem('cocart_cart_key');
 
-		var method   = 'POST',
-			endpoint = "add-item?id=" + $cookie,
-			data     = {
-			"product_id": product_id,
-			"quantity": qty,
-			"variation_id": variation_id,
-			"variation": variation,
-			"return_cart": return_cart
-		};
+		if ( variation.length > 0 ) {
+			var method   = 'POST',
+				endpoint = "add-item?cart_key=" + $cart_key,
+				data     = {
+				"product_id": product_id,
+				"quantity": qty,
+				"variation_id": variation_id,
+				"variation": variation,
+				"return_cart": return_cart
+			};
+		} else {
+			var method   = 'POST',
+				endpoint = "add-item?cart_key=" + $cart_key,
+				data     = {
+				"product_id": product_id,
+				"quantity": qty,
+				"return_cart": return_cart
+			};
+		}
 
 		var item = restjQuery({
 			site_url: site_url,
