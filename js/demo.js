@@ -1,15 +1,15 @@
 $(document).ready( function() {
 
-	// Set cookie for cart if it does not exist.
-	if ( Cookies.get('cocart_demo') == undefined ) {
-		Cookies.set('cocart_demo', 'demo');
+	// Set cart key if it does not exist.
+	if ( ! window.localStorage.getItem( 'cocart_cart_key' ) ) {
+		window.localStorage.setItem( 'cocart_cart_key', 'demo' );
 	}
 
-	// Set cookie to store response status if it does not exist.
-	if ( Cookies.get('cocart_demo_response') == undefined ) {
-		Cookies.set('cocart_demo_response', 'closed');
+	// Set localStorage to store response status if it does not exist.
+	if ( window.localStorage.getItem('cocart_demo_response') == undefined ) {
+		window.localStorage.setItem('cocart_demo_response', 'closed');
 	} else {
-		$show_api_response = Cookies.get('cocart_demo_response');
+		$show_api_response = window.localStorage.getItem('cocart_demo_response');
 		if ( $show_api_response == 'opened' ) {
 			$('a.toggle-results').text('Hide response');
 			$('.api-request').removeClass('closed').addClass('opened');
@@ -173,10 +173,10 @@ $(document).ready( function() {
 			return;
 		}
 
-		$cookie = Cookies.get('cocart_demo');
+		$cart_key = window.localStorage.getItem('cocart_cart_key');
 
 		var method   = 'GET',
-			endpoint = "get-cart?id=" + $cookie;
+			endpoint = "get-cart?cart_key=" + $cart_key;
 
 		var cart = restjQuery({
 			site_url: site_url,
@@ -208,7 +208,7 @@ $(document).ready( function() {
 
 	// Add item to the cart.
 	function add_to_cart( product_id, qty, variation_id, variation, button ) {
-		$cookie = Cookies.get('cocart_demo');
+		$cart_key = window.localStorage.getItem('cocart_cart_key');
 
 		var method   = 'POST',
 			endpoint = "add-item?id=" + $cookie,
@@ -259,11 +259,11 @@ $(document).ready( function() {
 		if ( $('.api-request').hasClass('closed') ) {
 			$(this).text('Hide response');
 			$('.api-request').removeClass('closed').addClass('opened');
-			Cookies.set('cocart_demo_response', 'opened');
+			window.localStorage.setItem('cocart_demo_response', 'opened');
 		} else {
 			$(this).text('Show response');
 			$('.api-request').addClass('closed').removeClass('opened');
-			Cookies.set('cocart_demo_response', 'closed');
+			window.localStorage.setItem('cocart_demo_response', 'closed');
 		}
 
 		return false;
